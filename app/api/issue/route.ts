@@ -1,14 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
-
+import prisma from "@/lib/prisma";
 
 async function addIssue(issueData: any) {
-    return "Hello";
+    const issue = await prisma.issue.create({
+        data: {
+            name: issueData.name,
+            description: issueData.description,
+            tags: issueData.tags,
+            status: issueData.status
+        }
+    });
+    return issue;
 }
 
 export const POST = async (request: NextRequest) => {
     const data = await request.json();
-    console.log("data : ",data);
     const issue = await addIssue(data);
 
-    return NextResponse.json("Issue Created")
+    return NextResponse.json({ message: "Issue Created", issue });
+
 }
