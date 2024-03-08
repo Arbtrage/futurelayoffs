@@ -28,7 +28,7 @@ const Landing = () => {
                 <span className={montserrat.className}>Future Layoffs</span>
               </h1>
               <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400 bg-gradient-to-r from-blue-200 to-cyan-200 bg-clip-text text-transparent">
-                Got laid off ? Don't worry you can still cover those expensive
+                Got laid off ? Don&apos;t worry you can still cover those expensive
                 trips !!
               </p>
             </div>
