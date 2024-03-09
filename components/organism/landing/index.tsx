@@ -1,7 +1,7 @@
 "use client";
 import { Montserrat } from "next/font/google";
 import React from "react";
-// import { motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useSignInModal } from "@/components/molecule/modal/auth.modal";
@@ -12,11 +12,11 @@ const Landing = () => {
   const { SignInModal, setShowSignInModal } = useSignInModal();
   const router = useRouter();
   return (
-    // <motion.div
-    //   initial={{ opacity: 0, y: -100, x: 0 }}
-    //   animate={{ opacity: 1, y: 0, x: 0 }}
-    //   transition={{ duration: 1.5, delay: 0.1 }}
-    // >
+    <motion.div
+      initial={{ opacity: 0, y: -100, x: 0 }}
+      animate={{ opacity: 1, y: 0, x: 0 }}
+      transition={{ duration: 1.5, delay: 0.1 }}
+    >
     <main className="flex items-center pt-40 md:p-0">
       <SignInModal />
       <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 content-center">
@@ -46,7 +46,7 @@ const Landing = () => {
         </div>
       </section>
     </main>
-    // </motion.div>
+    </motion.div>
   );
 };
 

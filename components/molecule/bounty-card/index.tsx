@@ -12,7 +12,7 @@ import { Badge } from "@/components/ui/badge";
 
 const BountyCard = ({ bounty }: any) => {
   return (
-    <Card className="w-full bg-gray-950 text-white flex flex-col border-none cursor-pointer">
+    <Card className="w-full bg-gray-750 text-white flex flex-col border border-gray-400 cursor-pointer">
       <div className="flex justify-between items-center px-9">
         <CardHeader className="w-[20%] text-sm flex justify-start">
           <CardTitle className="text-green-700">$ {bounty.bounty}</CardTitle>
