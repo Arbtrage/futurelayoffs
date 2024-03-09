@@ -1,17 +1,8 @@
 import { motion } from "framer-motion";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
-import React, { useState, useRef, useEffect } from "react";
-import { LayoutGrid } from "@/components/ui/layout-grid";
-import {
-  IconArrowWaveRightUp,
-  IconBoxAlignRightFilled,
-  IconBoxAlignTopLeft,
-  IconClipboardCopy,
-  IconFileBroken,
-  IconSignature,
-  IconTableColumn,
-} from "@tabler/icons-react";
+import React from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 const thumbnail = [
@@ -37,19 +28,26 @@ const Icon = ({ bounty }: any) => {
   return <div className="text-green-500">$ {bounty}</div>;
 };
 const BountyCard = ({ bounties }: any) => {
+  const router = useRouter();
+
   return (
     <div className="max-w-4xl mx-auto h-[800px] overflow-y-auto">
       <BentoGrid>
         {bounties.map((item: any, i: any) => (
+          // <div
+          //   className="cursor-pointer"
+          //   onClick={() => router.push(`/bounty/${item.id}`)}
+          // >
           <BentoGridItem
             key={i}
+            id={item.id}
             title={item.repository_name}
             description={item.description}
             bounty={item.bounty}
             header={<Skeleton index={i} />}
             icon={<Icon bounty={item.bounty} />}
-            // className={i === 3 || i === 6 ? "md:col-span-2" : ""}
           />
+          // </div>
         ))}
       </BentoGrid>
     </div>

@@ -1,8 +1,28 @@
 import { NextResponse, NextRequest } from "next/server";
+import prisma from "@/lib/prisma";
 
 async function getIssue(id: string) {
-  console.log(id);
-  return "Hello World";
+
+  const issue = await prisma.issue.findFirst({
+    where: {
+      id
+    },
+    select: {
+      name: true,
+      repository_description: true,
+      repository_name: true,
+      repository_url: true,
+      description: true,
+      tags: true,
+      status: true,
+      bounty: true,
+      license: true,
+      assignee: true,
+      assignees: true
+    }
+  })
+
+  return issue;
 }
 
 export const GET = async (
@@ -11,5 +31,5 @@ export const GET = async (
 ) => {
   const issue = await getIssue(params.id);
 
-  return NextResponse.json("Hello");
+  return NextResponse.json(issue);
 };

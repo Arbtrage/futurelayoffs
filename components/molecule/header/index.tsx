@@ -14,8 +14,10 @@ const Welcome = ({ name }: { name: string }) => {
 
 const Heading = ({ path }: { path: string }) => {
   let heading = path.replace("/", "");
-  heading=heading[0].toUpperCase()+heading.substring(1);
-  return <div className="text-5xl text-black">{heading}</div>;
+  heading = heading[0].toUpperCase() + heading.substring(1);
+  if (heading === "Flai") heading = "Future Layoffs AI"
+  if(heading.includes("Bounties/")) heading="Bounty"
+  return <div className="text-5xl text-black font-bold">{heading}</div>;
 };
 
 const Header = ({ name }: { name: string }) => {

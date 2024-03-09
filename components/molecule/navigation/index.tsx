@@ -12,6 +12,7 @@ import {
   UserRound,
   LogOut,
   HandCoins,
+  BotIcon
 } from "lucide-react";
 import { signOut } from "next-auth/react";
 
@@ -55,6 +56,11 @@ const Navbar = ({ profile }: any) => {
             href="/bounties"
             title="Bounties"
             icon=<HandCoins size={20} />
+          />
+          <Tabs
+            href="/flai"
+            title="FLAI"
+            icon=<BotIcon size={20} />
           />
           <Tabs
             href="/my-profile"

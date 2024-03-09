@@ -35,10 +35,11 @@ const SignInModal = ({
           <div className="relative shadow-xl bg-gray-900 border border-gray-800  px-4 py-8 h-full overflow-hidden rounded-2xl flex flex-col">
             <div className="flex items-center gap-5 justify-center mb-10 ">
               <Image
-                src="/fl.png"
+                src="/icon.jpeg"
                 alt="Logo"
-                width={90}
-                height={90}
+                width={300}
+                height={150}
+                className="rounded-md"
               />
             </div>
 
