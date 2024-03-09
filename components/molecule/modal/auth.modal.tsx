@@ -9,7 +9,9 @@ import {
   useMemo,
 } from "react";
 // import { LoadingDots, Google } from "@/components/shared/icons";
+import { Meteors } from "@/components/ui/meteors";
 import { Github, PlaneTakeoff } from "lucide-react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 const SignInModal = ({
@@ -20,10 +22,58 @@ const SignInModal = ({
   setShowSignInModal: Dispatch<SetStateAction<boolean>>;
 }) => {
   const [signInClicked, setSignInClicked] = useState(false);
+  const login = async () => {
+    setSignInClicked(true);
+    await signIn("github", { callbackUrl: "/home" });
+  };
 
   return (
     <Modal showModal={showSignInModal} setShowModal={setShowSignInModal}>
-      <div className="w-full overflow-hidden shadow-xl md:max-w-md md:rounded-2xl md:border md:border-black">
+      <div className="w-full h-full">
+        <div className=" w-full relative">
+          <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-blue-500 to-teal-500 transform scale-[0.80] bg-red-500 rounded-full blur-3xl" />
+          <div className="relative shadow-xl bg-gray-900 border border-gray-800  px-4 py-8 h-full overflow-hidden rounded-2xl flex flex-col">
+            <div className="flex items-center gap-5 justify-center mb-10 ">
+              <Image
+                src="/fl.png"
+                alt="Logo"
+                width={90}
+                height={90}
+              />
+            </div>
+
+            <p className="font-normal flex justify-center items-center text-base text-slate-500 mb-4 relative z-50">
+              <p className="text-sm text-gray-200 flex flex-col">
+                Explore bounties - Solve them - Get paid
+                <span className="text-gray-100 text-bold flex justify-center items-center gap-2">
+                  Book tickets for Europe <PlaneTakeoff />
+                </span>
+              </p>
+            </p>
+            <Button
+              disabled={signInClicked}
+              className={`${
+                signInClicked
+                  ? "cursor-not-allowed border-white bg-gray-700"
+                  : "border border-black text-white bg-gray-900 hover:bg-black"
+              } flex h-10 items-center justify-center space-x-3 bg-gray-700 rounded-md border text-sm shadow-sm transition-all duration-75 focus:outline-none mx-auto`}
+              onClick={() => login()}
+            >
+              {signInClicked ? (
+                <>Loading...</>
+              ) : (
+                <>
+                  <Github className="h-5 w-5" />
+                  <p>Sign In with Github</p>
+                </>
+              )}
+            </Button>
+
+            <Meteors number={20} />
+          </div>
+        </div>
+      </div>
+      {/* <div className="w-full overflow-hidden shadow-xl md:max-w-md md:rounded-2xl md:border md:border-black">
         <div className="flex flex-col items-center justify-center space-y-3 border-b border-black bg-black text-white px-4 py-6 pt-8 text-center md:px-16">
           <Image
             src="/fl.png"
@@ -50,10 +100,7 @@ const SignInModal = ({
                 ? "cursor-not-allowed border-black bg-black"
                 : "border border-black text-white bg-gray-900 hover:bg-black"
             } flex h-10 w-full items-center justify-center space-x-3 rounded-md border text-sm shadow-sm transition-all duration-75 focus:outline-none`}
-            onClick={async() => {
-              setSignInClicked(true);
-              await signIn("github",{ callbackUrl: "/home" });
-            }}
+            onClick={() => login()}
           >
             {signInClicked ? (
               <>Loading...</>
@@ -65,7 +112,7 @@ const SignInModal = ({
             )}
           </Button>
         </div>
-      </div>
+      </div> */}
     </Modal>
   );
 };

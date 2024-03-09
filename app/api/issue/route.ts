@@ -24,6 +24,7 @@ async function addIssue(issueData: IssueData) {
                 repository_url: issueData.repository_url,
                 repository_name: issueData.repository_name,
                 repository_description: issueData.repository_description,
+                bounty:issueData.bounty,
                 license: issueData.license,
                 assignee: issueData.assignee,
                 assignees: issueData.assignees 

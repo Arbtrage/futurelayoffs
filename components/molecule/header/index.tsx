@@ -1,32 +1,34 @@
-import { Suspense } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Separator } from "@/components/ui/separator";
-import { getServerSession } from "next-auth";
-import authOptions from "@/lib/auth";
-import { Bell, Mail } from "lucide-react";
+"use client";
 
-const Header = async () => {
-  const session = await getServerSession(authOptions);
-  const userData = session?.user;
+import { usePathname, useRouter } from "next/navigation";
+import Image from "next/image";
+import { motion } from "framer-motion";
+
+const Welcome = ({ name }: { name: string }) => {
   return (
-    <div className="p-5 h-[65px] gap-2 border-r-2 border-gray-900 flex flex-row justify-end text-white items-center bg-black relative">
-      <div className="flex flex-row justify-end items-center">
-        <div className="flex flex-row mx-5 gap-3">
-          <Mail />
-          <Bell />
-        </div>
-        <Suspense>
-          <Avatar className="cursor-pointer">
-            <AvatarImage src={userData?.image as string} />
-            <AvatarFallback>user</AvatarFallback>
-          </Avatar>
-        </Suspense>
-        <div className="flex ml-1 flex-col cursor-pointer">
-          <span className="flex justify-start font-bold text-sm">{userData?.name}</span>
-          <span className="text-xs opacity-70">{userData?.email}</span>
-        </div>
-      </div>
+    <div className="text-5xl text-black">
+      Welcome <span className="text-blue-800">{name}</span>
     </div>
+  );
+};
+
+const Heading = ({ path }: { path: string }) => {
+  let heading = path.replace("/", "");
+  heading=heading[0].toUpperCase()+heading.substring(1);
+  return <div className="text-5xl text-black">{heading}</div>;
+};
+
+const Header = ({ name }: { name: string }) => {
+  const path = usePathname();
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1.5 }}
+      className="p-5 h-[120px] gap-2 flex flex-row  items-center bg-slate-200	 relative"
+    >
+      {path === "/home" ? <Welcome name={name} /> : <Heading path={path} />}
+    </motion.div>
   );
 };
 

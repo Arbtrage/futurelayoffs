@@ -4,16 +4,32 @@ import { NextAuthOptions } from "next-auth";
 const authOptions: NextAuthOptions = {
     providers: [
         GithubProvider({
-            clientId: process.env.GITHUB_ID as string,
-            clientSecret: process.env.GITHUB_SECRET as string,
+            clientId: process.env.NEXT_PUBLIC_GITHUB_ID as string,
+            clientSecret: process.env.NEXT_PUBLIC_GITHUB_SECRET as string,
         }),
     ],
-    session: {
-        strategy: "jwt",
-    },
     pages: {
-        signIn: "/login",
-    }
+        signIn: "/",
+    },
+    cookies: {
+        sessionToken: {
+            name: "FL",
+            options: {
+                httpOnly: true,
+                sameSite: "lax",
+                path: "/",
+            },
+        },
+    },
+    callbacks: {
+        async session({ token, session }) {
+            if (token.user) {
+                console.log("Token",token);
+                session.user = token.user;
+            }
+            return session;
+        },
+    },
 };
 
 export default authOptions;

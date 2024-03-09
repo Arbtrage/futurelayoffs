@@ -16,13 +16,17 @@ export default async function RootLayout({
 }>) {
   const session = await getServerSession(authOptions);
   if (!session?.user?.email) redirect("/");
+  const name = session?.user?.name;
+  const photo = session?.user?.image;
+
+  console.log(session);
   return (
     <html lang="en">
       <body>
         <div className="min-h-screen flex flex-row">
-          <Navbar />
-          <div className="items-center bg-gray-950 text-white text-center w-full">
-            <Header />
+          <Navbar profile={photo} />
+          <div className="items-center bg-slate-200	 text-white text-center w-full">
+            <Header name={name as string} />
             {children}
           </div>
         </div>

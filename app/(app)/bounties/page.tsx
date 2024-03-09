@@ -1,7 +1,7 @@
 import Bounties from "@/components/organism/bounty";
 const Page = () => {
   return (
-    <div className="p-5">
+    <div className="p-2">
       <Bounties />
     </div>
   );
