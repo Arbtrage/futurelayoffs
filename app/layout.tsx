@@ -6,7 +6,11 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Future Layoffs",
-  description: "Got laid off ? Don't worry you can still cover those expensive trips !!",
+  description:
+    "Got laid off ? Don't worry you can still cover those expensive trips !!",
+  icons: {
+    icon: "/fl.png",
+  },
 };
 
 export default function RootLayout({

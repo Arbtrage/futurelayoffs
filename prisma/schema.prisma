@@ -11,11 +11,18 @@ datasource db {
 }
 
 model Issue {
-  id          String   @id @default(uuid())
-  name        String
-  description String
-  tags        String[]
-  status      String
-  created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
+  id                     String   @id @default(uuid())
+  name                   String
+  description            String?
+  tags                   String[]
+  status                 String
+  repository_url         String
+  bounty                 Int?     @default(0)
+  repository_name        String
+  repository_description String?
+  license                String?
+  assignee               String?
+  assignees              String[]
+  created_at             DateTime @default(now())
+  updated_at             DateTime @updatedAt
 }
