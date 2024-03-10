@@ -30,9 +30,17 @@ model Issue {
 }
 
 model User {
-  id            String   @id
+  id            String   @id @default(uuid())
   name          String
-  email         String
+  email         String?
+  username      String   @unique
+  bio           String?
+  company       String?
+  site          String?
+  location      String?
+  public_repos  Int?
+  followers     Int?
+  following     Int?
   profilePicUrl String?
   githubUrl     String?
   Issue         Issue[]

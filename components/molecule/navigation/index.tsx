@@ -48,7 +48,7 @@ const Navbar = ({ profile }: any) => {
         <div className=" mt-20 flex flex-col gap-2">
           <Tabs href="/home" title="Home" icon=<Home size={30} /> />
           <Tabs
-            href="/invoices"
+            href="/contributions"
             title="Contributions"
             icon=<ReceiptText size={20} />
           />
@@ -59,11 +59,11 @@ const Navbar = ({ profile }: any) => {
           />
           <Tabs
             href="/flai"
-            title="FLAI"
+            title="FL AI"
             icon=<BotIcon size={20} />
           />
           <Tabs
-            href="/my-profile"
+            href="/profile"
             title="Profile"
             icon=<UserRound size={20} />
           />
