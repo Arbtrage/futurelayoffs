@@ -5,7 +5,7 @@ import useSWR from "swr";
 import { fetcher } from "@/lib/utils";
 import Link from "next/link";
 
-const page = ({ params }: { params: { id: string } }) => {
+const Bounty = ({ params }: { params: { id: string } }) => {
   const { data, error } = useSWR(`/api/issue/${params.id}`, fetcher);
 
   if (error)
@@ -34,4 +34,4 @@ const page = ({ params }: { params: { id: string } }) => {
   );
 };
 
-export default page;
+export default Bounty;
