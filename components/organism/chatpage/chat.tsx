@@ -42,10 +42,12 @@ export function ChatLLM() {
     setLoading(true);
     const data = await askQuestion(question);
     setWords(data.answer);
-    setTimeout(() => {
-      setLoading(false);
-      setAnswer(true);
-    }, 16000);
+    setAnswer(true);
+    setLoading(false);
+    // setTimeout(() => {
+    //   setLoading(false);
+    //   setAnswer(true);
+    // }, 16000);
   };
 
   return (
@@ -84,10 +86,10 @@ export function ChatLLM() {
               )}
             </>
           ) : (
-              // <div className="max-w-4xl mx-auto h-[700px] overflow-y-auto">
-
-                <TextGenerateEffect words={words} />
-              // </div>
+              <div className="mx-auto h-[700px] overflow-y-auto">
+                { words}
+                {/* <TextGenerateEffect words={words} /> */}
+              </div>
           )}
         </div>
         <BackgroundBeams />
