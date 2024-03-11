@@ -9,6 +9,7 @@ import { fetcher } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import useSWR from "swr";
 import { ChatLLM } from "./chat";
+import { processRepository } from "@/lib/actions";
 
 const loadingStates = [
   { text: "Searching for the repo" },
@@ -32,10 +33,11 @@ export function Chat() {
 
   // const { data, error, isLoading } = useSWR("/api/issue", fetcher);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async(event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log("clicked");
     setLoading(true);
+    await processRepository(repoUrl);
     setTimeout(() => {
       setLoading(false);
       setToChat(true);

@@ -8,6 +8,7 @@ import { IconSquareRoundedX } from "@tabler/icons-react";
 import { fetcher } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import useSWR from "swr";
+import { askQuestion } from "@/lib/actions";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 
 const loadingStates = [
@@ -20,24 +21,27 @@ const loadingStates = [
   { text: "Okay here it goes !" },
 ];
 
-const words = `Oxygen gets you high. In a catastrophic emergency, we're taking giant, panicked breaths. Suddenly you become euphoric, docile. You accept your fate. It's all right here. Emergency water landing, six hundred miles an hour. Blank faces, calm as Hindu cows
-`;
+// const words = `Oxygen gets you high. In a catastrophic emergency, we're taking giant, panicked breaths. Suddenly you become euphoric, docile. You accept your fate. It's all right here. Emergency water landing, six hundred miles an hour. Blank faces, calm as Hindu cows
+// `;
 
 export function ChatLLM() {
-  const [data, setData] = useState<string>("");
+  const [question, setQuestion] = useState<string>("");
   const [loading, setLoading] = useState(false);
   const [answer, setAnswer] = useState(false);
+  const [words, setWords] = useState("");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setData(event.target.value);
+    setQuestion(event.target.value);
   };
 
   // const { data, error, isLoading } = useSWR("/api/issue", fetcher);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async(event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log("clicked");
     setLoading(true);
+    const data = await askQuestion(question);
+    setWords(data.answer);
     setTimeout(() => {
       setLoading(false);
       setAnswer(true);
@@ -65,7 +69,7 @@ export function ChatLLM() {
               <form onSubmit={handleSubmit}>
                 <Input
                   type="text"
-                  value={data}
+                  value={question}
                   onChange={handleChange}
                   className="rounded-lg border border-neutral-800 focus:ring-2 focus:ring-teal-500  w-full relative z-10 mt-4  bg-neutral-950 placeholder:text-neutral-700"
                 />
@@ -80,7 +84,10 @@ export function ChatLLM() {
               )}
             </>
           ) : (
-            <TextGenerateEffect words={words} />
+              // <div className="max-w-4xl mx-auto h-[700px] overflow-y-auto">
+
+                <TextGenerateEffect words={words} />
+              // </div>
           )}
         </div>
         <BackgroundBeams />

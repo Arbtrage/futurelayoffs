@@ -1,5 +1,6 @@
 import GithubProvider from "next-auth/providers/github"
 import { NextAuthOptions } from "next-auth";
+import { getServerSession } from "next-auth";
 
 const authOptions: NextAuthOptions = {
     providers: [
@@ -31,5 +32,11 @@ const authOptions: NextAuthOptions = {
         },
     },
 };
+
+
+export async function getSession(){
+    const session = await getServerSession(authOptions);
+    return session;
+}
 
 export default authOptions;

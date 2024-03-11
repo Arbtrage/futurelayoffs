@@ -1,20 +1,28 @@
 import { Inter } from "next/font/google";
 import "../globals.css";
+import type { Metadata } from "next";
 import Navbar from "@/components/molecule/navigation";
 import Header from "@/components/molecule/header";
-import { getServerSession } from "next-auth";
-import authOptions from "@/lib/auth";
 import { redirect } from "next/navigation";
+import { getSession } from "@/lib/auth";
 import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
+
+
+export const metadata: Metadata = {
+  icons: {
+    icon: "/fl.png",
+  },
+};
+
 
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getServerSession(authOptions);
+  const session = await getSession();
   if (!session?.user?.email) redirect("/");
   const name = session?.user?.name;
   const photo = session?.user?.image;
