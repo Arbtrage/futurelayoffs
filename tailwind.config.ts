@@ -20,6 +20,10 @@ const config = {
         "2xl": "1400px",
       },
     },
+    fontFamily: {
+      play: ["Play", "sans-serif"],
+      popins:["Poppins", "sans-serif"],
+    },
     extend: {
       colors: {
         border: "hsl(var(--border))",

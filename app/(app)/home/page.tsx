@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import authOptions from "@/lib/auth";
 import { checkUser } from "@/lib/actions";
-import Dashboard from "@/components/organism/dashboard";
+import Dashboard from "@/components/template/dashboard";
 
 const Page = async () => {
   const session = await getServerSession(authOptions);

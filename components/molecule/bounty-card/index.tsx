@@ -31,7 +31,7 @@ const BountyCard = ({ bounties }: any) => {
   const router = useRouter();
 
   return (
-    <div className="max-w-4xl mx-auto h-[800px] overflow-y-auto">
+    <div className="max-w-4xl mx-auto h-[800px]">
       <BentoGrid>
         {bounties.map((item: any, i: any) => (
           // <div

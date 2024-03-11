@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className="font-popins">
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>

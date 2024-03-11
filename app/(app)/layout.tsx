@@ -9,13 +9,11 @@ import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
-
 export const metadata: Metadata = {
   icons: {
     icon: "/fl.png",
   },
 };
-
 
 export default async function RootLayout({
   children,
@@ -31,11 +29,13 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className="min-h-screen flex flex-row">
+        <div className="min-h-screen flex flex-row bg-slate-200 text-white ">
           <Navbar profile={photo} />
-          <div className="items-center bg-slate-200	 text-white text-center w-full">
+          <div className="flex flex-col w-full">
             <Header name={name as string} />
-            {children}
+            <div className="overflow-auto text-center flex-1">
+              {children}
+            </div>
           </div>
         </div>
       </body>
